@@ -1,3 +1,8 @@
+from fastapi import FastAPI
+from typing import Dict
+
+app = FastAPI()
+
 from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
@@ -6,11 +11,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-from fastapi import FastAPI
-from typing import Dict
-
-app = FastAPI()
 
 # FAKE in-memory database
 users = {
