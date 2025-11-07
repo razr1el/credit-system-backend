@@ -25,3 +25,10 @@ def add_credits(username: str, amount: int):
         users[username]["balance"] += amount
         return {"balance": users[username]["balance"]}
     return {"error": "User not found"}
+
+@app.post("/subtract_credits/{username}")
+def subtract_credits(username: str, amount: int):
+    if username in users:
+        users[username]["balance"] -= amount
+        return {"balance": users[username]["balance"]}
+    return {"error": "User not found"}
