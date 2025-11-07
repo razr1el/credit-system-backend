@@ -10,6 +10,8 @@
     <input id="amount" type="number" placeholder="Amount">
 
     <button onclick="addCredits()">Add Credits</button>
+    <button onclick="subtractCredits()">Subtract Credits</button>
+    <button onclick="checkBalance()">Check Balance</button>
 
     <p id="status"></p>
 
@@ -21,6 +23,30 @@
             const response = await fetch(
                 `https://credit-system-backend-production.up.railway.app/add_credits/${user}?amount=${amount}`,
                 { method: "POST" }
+            );
+
+            const data = await response.json();
+            document.getElementById("status").innerText = JSON.stringify(data);
+        }
+
+        async function subtractCredits() {
+            const user = document.getElementById("user").value;
+            const amount = document.getElementById("amount").value;
+
+            const response = await fetch(
+                `https://credit-system-backend-production.up.railway.app/subtract_credits/${user}?amount=${amount}`,
+                { method: "POST" }
+            );
+
+            const data = await response.json();
+            document.getElementById("status").innerText = JSON.stringify(data);
+        }
+
+        async function checkBalance() {
+            const user = document.getElementById("user").value;
+
+            const response = await fetch(
+                `https://credit-system-backend-production.up.railway.app/balance/${user}`
             );
 
             const data = await response.json();
